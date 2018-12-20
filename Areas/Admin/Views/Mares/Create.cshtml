@@ -1,0 +1,48 @@
+﻿@model IrishNationalStud.Models.Mares
+@{
+    ViewData["Title"] = "Create";
+}
+
+<br />
+<h2 class="text-info">Add a Mare</h2>
+
+<form method="post" asp-action="Create">
+    <div class="p-4 border rounded">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <div class="form-group row">
+            <div class="col-2">
+                <label asp-for="Name"></label><br /><br /><br />
+                <label asp-for="DOB"></label><br /><br />
+                <label asp-for="Sire"></label><br /><br />
+                <label asp-for="Dam"></label><br /><br />
+                <label asp-for="Colour"></label><br /><br />
+                <label asp-for="Stallions"></label><br /><br />
+                <label asp-for="InFoal"></label><br /><br />
+                <label asp-for="DueDate"></label><br /><br />
+                <label asp-for="Foal"></label><br /><br />
+
+            </div>
+            <div class="col-5">
+                <input asp-for="Name" class="form-control" /><br />
+                <input asp-for="DOB" class="form-control" /><br />
+                <input asp-for="Sire" class="form-control" /><br />
+                <input asp-for="Dam" class="form-control" /><br />
+                <input asp-for="Colour" class="form-control" /><br />
+                <input asp-for="Stallions" class="form-control" /><br />
+                <input asp-for="InFoal" class="img-fluid" /><br />
+                <input asp-for="DueDate" class="form-control" /><br />
+                <input asp-for="Foal" class="form-control" /><br />
+            </div>
+            <span asp-validation-for="Name" class="text-danger"></span>
+        </div>
+        <br />
+        <div class="form-group">
+            <input type="submit" class="btn btn-primary" value="Create" />
+            <a asp-action="Index" class="btn btn-success">Back to List</a>
+        </div>
+    </div>
+</form>
+
+@section Scripts{
+    @{ await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

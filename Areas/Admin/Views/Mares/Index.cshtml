@@ -1,0 +1,99 @@
+﻿@model IEnumerable<IrishNationalStud.Models.Mares>
+@{
+    ViewData["Title"] = "Index";
+}
+
+<br /><br />
+
+<div>
+    <div class="position-relative">
+        <img src="~/images/mare.jpg" class="rounded mx-auto d-block" />
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-6">
+        <h2 class="text-info">Mares List</h2>
+    </div>
+    <div class="col-6 text-right">
+        <a asp-action="Create" class="btn btn-info"><i class="fas fa-plus"></i>&nbsp; New Mare</a>
+    </div>
+</div>
+
+<br />
+
+<div>
+    <table class="table table-striped border">
+        <tr class="table-info">
+            <th>
+                @Html.DisplayNameFor(m => m.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(m => m.DOB)
+            </th>
+            <th>
+                @Html.DisplayNameFor(m => m.Sire)
+            </th>
+            <th>
+                @Html.DisplayNameFor(m => m.Dam)
+            </th>
+            <th>
+                @Html.DisplayNameFor(m => m.Colour)
+            </th>
+            <th>
+                @Html.DisplayNameFor(m => m.Stallions)
+            </th>
+            <th>
+                @Html.DisplayNameFor(m => m.InFoal)
+            </th>
+            <th>
+                @Html.DisplayNameFor(m => m.DueDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(m => m.Foal)
+            </th>
+            <th></th>
+            <th></th>
+        </tr>
+
+        @foreach(var item in Model)
+        {
+        <tr>
+            <td>
+                @Html.DisplayFor(m => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(m => item.DOB)
+            </td>
+            <td>
+                @Html.DisplayFor(m => item.Sire)
+            </td>
+            <td>
+                @Html.DisplayFor(m => item.Dam)
+            </td>
+            <td>
+                @Html.DisplayFor(m => item.Colour)
+            </td>
+            <td>
+                @Html.DisplayFor(m => item.Stallions)
+            </td>
+            <td>
+                @Html.DisplayFor(m => item.InFoal)
+            </td>
+            <td>
+                @Html.DisplayFor(m => item.DueDate)
+            </td>
+            <td>
+                @Html.DisplayFor(m => item.Foal)
+
+            </td>
+            <td>
+                <partial name="_TableButtonPartial" model="item.Id" />
+            </td>
+        </tr>
+        }
+
+    </table>
+</div>
+
+

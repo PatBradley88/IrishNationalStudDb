@@ -1,0 +1,154 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using IrishNationalStud.Data;
+using IrishNationalStud.Models;
+using IrishNationalStud.Utility;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+
+namespace IrishNationalStud.Controllers
+{
+    [Area("Admin")]
+    public class FoalsController : Controller
+    {
+
+        private readonly ApplicationDbContext _db;
+
+        public FoalsController(ApplicationDbContext db)
+        {
+            _db = db;
+        }
+
+
+
+        public IActionResult Index()
+        {
+            return View(_db.Foals.ToList());
+        }
+
+        //GET Create action method
+        public IActionResult Create()
+        {
+            return View();
+        }
+
+        //POST Create action method
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Create(Foals foals)
+        {
+            if (ModelState.IsValid)
+            {
+                _db.Add(foals);
+                await _db.SaveChangesAsync();
+                return RedirectToAction(nameof(Index));
+            }
+            return View(foals);
+        }
+
+
+        //GET Edit Action Method
+        public async Task<IActionResult> Edit(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var foals = await _db.Foals.FindAsync(id);
+            if (foals == null)
+            {
+                return NotFound();
+            }
+
+            return View(foals);
+        }
+
+        //POST Edit action method
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Edit(int id, Foals foals)
+        {
+            if (id != foals.Id)
+            {
+                return NotFound();
+            }
+            if (ModelState.IsValid)
+            {
+                _db.Update(foals);
+                await _db.SaveChangesAsync();
+                return RedirectToAction(nameof(Index));
+            }
+            return View(foals);
+        }
+
+
+        //GET Details Action Method
+        public async Task<IActionResult> Details(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var foals = await _db.Foals.FindAsync(id);
+            if (foals == null)
+            {
+                return NotFound();
+            }
+
+            return View(foals);
+        }
+
+        //POST Details action method
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Details(int id, Foals foals)
+        {
+            if (id != foals.Id)
+            {
+                return NotFound();
+            }
+            if (ModelState.IsValid)
+            {
+                _db.Update(foals);
+                await _db.SaveChangesAsync();
+                return RedirectToAction(nameof(Index));
+            }
+            return View(foals);
+        }
+
+        //GET Delete Action Method
+        [Authorize(Roles = SD.SuperAdminEndUser)]
+        public async Task<IActionResult> Delete(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var foals = await _db.Foals.FindAsync(id);
+            if (foals == null)
+            {
+                return NotFound();
+            }
+
+            return View(foals);
+        }
+
+        //POST Delete action method
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Delete(int id)
+        {
+            var foals = await _db.Foals.FindAsync(id);
+            _db.Foals.Remove(foals);
+            await _db.SaveChangesAsync();
+            return RedirectToAction(nameof(Index));
+        }
+
+    }
+}

@@ -1,0 +1,43 @@
+﻿@model IrishNationalStud.Models.Mares
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<br />
+<h2 class="text-info">Delete a Mare's details</h2>
+
+<form method="post" asp-action="Delete">
+    <div class="p-4 border rounded">
+        <div class="form-group row">
+            <div class="col-2">
+                <label asp-for="Name"></label><br /><br /><br />
+                <label asp-for="DOB"></label><br /><br />
+                <label asp-for="Sire"></label><br /><br />
+                <label asp-for="Dam"></label><br /><br />
+                <label asp-for="Colour"></label><br /><br />
+                <label asp-for="Stallions"></label><br /><br />
+                <label asp-for="InFoal"></label><br /><br />
+                <label asp-for="DueDate"></label><br /><br />
+                <label asp-for="Foal"></label><br /><br />
+            </div>
+            <div class="col-5">
+                <input asp-for="Name" disabled class="form-control" /><br />
+                <input asp-for="DOB" disabled class="form-control" /><br />
+                <input asp-for="Sire" disabled class="form-control" /><br />
+                <input asp-for="Dam" disabled class="form-control" /><br />
+                <input asp-for="Colour" disabled class="form-control" /><br />
+                <input asp-for="Stallions" disabled class="form-control" /><br />
+                <input asp-for="InFoal" disabled class="form-control" /><br />
+                <input asp-for="DueDate" disabled class="form-control" /><br />
+                <input asp-for="Foal" disabled class="form-control" /><br />
+            </div>
+        </div>
+        <br />
+        <div class="form-group">
+            <input type="submit" class="btn btn-danger" asp-route-id="@Model.Id" value="Delete" />
+            <a asp-action="Index" class="btn btn-success">Back to List</a>
+        </div>
+    </div>
+</form>
+
+
